@@ -3,14 +3,16 @@
 
   goog.provide('map_controller');
 
-  goog.require('fixed_rectangle_provider');
+  goog.require('leaflet_draw_overrides');
 
   var module = angular.module('map_controller', [
   'leaflet-directive',
-  'fixed_rectangle_provider'
+  'leaflet_draw_overrides'
   ]);
 
-  module.controller('MapController', function($scope, leafletData, FixedRectangleProvider){
+  module.controller('MapController', function(
+    $scope, leafletData, LeafletDrawOverrides
+    ){
     angular.extend($scope, {
       layers: {
         baselayers: {
@@ -32,12 +34,7 @@
       }
     });
 
-    var getRectangle = function(center, zoom){
-      return [
-        [center.lat, center.lng],
-        [ center.lat + 30 / zoom, center.lng + 50 / zoom]
-      ]
-    }
+    LeafletDrawOverrides.overrideEditRectangle();
 
     var map = leafletData.getMap();
 
@@ -56,33 +53,17 @@
         }
       }).addTo(map);
 
-      L.Rectangle.addInitHook(function () {
-        if (FixedRectangleProvider.EditRectangle) {
-          this.editing = new FixedRectangleProvider.EditRectangle(this);
-        }
+      // For some reason the edit buttons are toggled every feature addition
+      // we force them to be always active either after a feature add or remove.
+      map.on('draw:created', function(e){
+        e.layer.addTo(rectangles);
+        $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');
+      });
+     
+      map.on('draw:deleted', function(){
+        $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');
       });
 
-      $scope.addRectangle = function(){
-
-        var zoom = map.getZoom();
-        var center = map.getCenter();
-
-        var rectangle = L.rectangle(getRectangle(center, zoom),
-          {color: "#ff7800", weight: 1}).addTo(rectangles);
-
-        rectangle.on('click', function(e){ 
-          if(e.target.options.editable){
-            e.target.options.editable = false;
-            e.target.editing.disable();
-          }else{
-            e.target.options.editable = true;
-            e.target.editing.enable();
-          }
-        });
-
-        $('.leaflet-draw-edit-edit').removeClass('leaflet-disabled');
-        $('.leaflet-draw-edit-remove').removeClass('leaflet-disabled');
-      }
     });
   });
 })();
