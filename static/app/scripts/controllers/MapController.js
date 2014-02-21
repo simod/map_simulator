@@ -13,6 +13,9 @@
   module.controller('MapController', function(
     $scope, leafletData, LeafletDrawOverrides
     ){
+
+    $scope.rectangles = [];
+
     angular.extend($scope, {
       layers: {
         baselayers: {
@@ -34,6 +37,7 @@
       }
     });
 
+    // Override Leaflet Draw
     LeafletDrawOverrides.overrideEditRectangle();
 
     var map = leafletData.getMap();
@@ -53,14 +57,24 @@
         }
       }).addTo(map);
 
+      var rect_id = 0;
+
       // For some reason the edit buttons are toggled every feature addition
       // we force them to be always active either after a feature add or remove.
       map.on('draw:created', function(e){
-        e.layer.addTo(rectangles);
+        e.layer.addTo(rectangles);  
+        e.layer.id = rect_id;
+        rect_id ++;
+        $scope.rectangles.push(e.layer);
         $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');
       });
      
-      map.on('draw:deleted', function(){
+      map.on('draw:deleted', function(e){
+        for(var i=0; i < $scope.rectangles.length; i++){
+          if($scope.rectangles[i].id === e.layers.getLayers()[0].id){
+            $scope.rectangles.splice(i, 1);
+          }
+        }
         $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');
       });
 

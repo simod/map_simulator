@@ -22,7 +22,10 @@
         </leaflet>
     </div>
     <div>
-        <h2 ng-click="addRectangle()">Add a rectangle</h2>
+        <h2>Rectangles</h2>
+        {% verbatim %}
+        <article ng-repeat="rec in rectangles">Feature: {{rec.id}}</article>
+        {% endverbatim %}
     </div>
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->

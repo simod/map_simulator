@@ -15,7 +15,7 @@
           var bounds;
 
           // Calculate the target lat based on fixed proportions
-          latlng.lat = FormatRatioProvider.A0(this._oppositeCorner, latlng);
+          latlng.lat = FormatRatioProvider.getLatLandscape(this._oppositeCorner, latlng);
 
           this._shape.setBounds(L.latLngBounds(latlng, this._oppositeCorner));
 
@@ -42,7 +42,7 @@
         // Override the drawShape method of the draw tool to respect the format ratio
         L.Draw.Rectangle.prototype._drawShape = function (latlng) {
           // Calculate the target lat based on fixed proportions
-          latlng.lat = FormatRatioProvider.A0(this._startLatLng, latlng);
+          latlng.lat = FormatRatioProvider.getLatLandscape(this._startLatLng, latlng);
           
           if (!this._shape) {
             this._shape = new L.Rectangle(new L.LatLngBounds(this._startLatLng, latlng), this.options.shapeOptions);

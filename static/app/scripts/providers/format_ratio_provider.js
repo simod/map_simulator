@@ -7,7 +7,7 @@
   module.provider('FormatRatioProvider', function(){
 
     function _computeRatio(format){
-      return format === 'A0' ?  0.5 : 1;
+      return format === 'portrait' ? Math.sqrt(2) : 1/Math.sqrt(2); 
     };
 
     function computeTargetLat(startLatLng, endLatLng, format){
@@ -21,11 +21,11 @@
 
     this.$get = function(){
       return {
-        A0: function(startLatLng, endLatLng){
-          return computeTargetLat(startLatLng, endLatLng, 'A0');
+        getLatLandscape: function(startLatLng, endLatLng){
+          return computeTargetLat(startLatLng, endLatLng, 'landscape');
         },
-        A1: function(){
-
+        getLatPortrait: function(startLatLng, endLatLng){
+          return computeTargetLat(startLatLng, endLatLng, 'portrait');
         }
       }
     }
