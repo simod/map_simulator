@@ -1,0 +1,21 @@
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#wrapper { 
+  margin: 0 auto;
+  width: 1024px;
+}
+
+.angular-leaflet-map {
+  height: 100%;
+}
+
+.map{
+  height: 500px;
+  border: 1px solid #C0C0C0;
+  padding: 0px;
+}
+

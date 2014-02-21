@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app="mapper"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mapper</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{% static "bower_components/leaflet-dist/leaflet.css" %}">
+    <link rel="stylesheet" href="{% static "bower_components/leaflet.draw/dist/leaflet.draw.css" %}">
+    <link rel="stylesheet" href="{% static "bower_components/bootstrap/dist/css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
+  </head>
+  <body ng-controller="MapController">
+    
+    <div class="map col-md-8 pull-left" id="map">
+        <leaflet center="center" layers="layers">
+        </leaflet>
+    </div>
+    <div>
+        <h2 ng-click="addRectangle()">Add a rectangle</h2>
+    </div>
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="{% static "bower_components/jquery/jquery.js" %}"></script>
+    <script src="{% static "bower_components/angular/angular.js" %}"></script>
+    <script src="{% static "bower_components/bootstrap/dist/js/bootstrap.js" %}"></script>
+    <script src="{% static "bower_components/leaflet-dist/leaflet.js" %}"></script>
+    <script src="{% static "bower_components/leaflet.draw/dist/leaflet.draw.js" %}"></script>
+    <script src="{% static "bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js" %}"></script>
+    
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <script>
+      window.CLOSURE_NO_DEPS = true;
+      window.CLOSURE_BASE_PATH = ".";
+    </script>
+
+    <script src="{% static "bower_components/closure-library/closure/goog/base.js" %}"></script>
+
+    <script src="{% static "deps.js" %}"></script>
+    <script>
+        goog.require('mapper');
+    </script>
+</body>
+</html>
