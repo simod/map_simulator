@@ -24,6 +24,7 @@
           this._moveMarker.setLatLng(bounds.getCenter());
         };
 
+        // Override the create marker method to just show the bottom right one
         L.Edit.Rectangle.prototype._createResizeMarker= function () {
           var corners = this._getCorners();
           this._resizeMarkers = [];
@@ -33,6 +34,7 @@
             this._resizeMarkers[0]._cornerIndex = 2;
         };
 
+        // Override the reposizion markers, to just use the botton right
         L.Edit.Rectangle.prototype._repositionCornerMarkers= function () {
           var corners = this._getCorners();
 

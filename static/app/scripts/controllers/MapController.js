@@ -53,7 +53,7 @@
           circle: null
         },
         edit: {
-            featureGroup: rectangles
+          featureGroup: rectangles
         }
       }).addTo(map);
 
@@ -71,8 +71,10 @@
      
       map.on('draw:deleted', function(e){
         for(var i=0; i < $scope.rectangles.length; i++){
-          if($scope.rectangles[i].id === e.layers.getLayers()[0].id){
-            $scope.rectangles.splice(i, 1);
+          for(var j=0; j<e.layers.getLayers().length; j++){
+            if($scope.rectangles[i].id === e.layers.getLayers()[j].id){
+              $scope.rectangles.splice(i, 1);
+            }
           }
         }
         $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');
