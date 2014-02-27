@@ -18,13 +18,13 @@
   <body ng-controller="MapController">
     
     <div class="map col-md-8 pull-left" id="map">
-        <leaflet center="center" layers="layers">
+        <leaflet center="center">
         </leaflet>
     </div>
     <div>
         <h2>Areas of interest</h2>
         {% verbatim %}
-        <article ng-repeat="rec in rectangles">Feature: {{rec.id}}</article>
+        <article ng-repeat="rec in rectangles">Feature: <span ng-bind="rec.id"></span></article>
         {% endverbatim %}
     </div>
     <!-- build:js scripts/vendor.js -->
