@@ -3,18 +3,11 @@
 (function(){
   goog.provide('leaflet_rectangle_extensions');
 
-  goog.require('format_ratio_provider');
+  var module = angular.module('leaflet_rectangle_extensions', []);
 
-  var module = angular.module('leaflet_rectangle_extensions', [
-    'format_ratio_provider']);
-
-  module.factory('LeafletRectangleExtensions', function(FormatRatioProvider){
+  module.factory('LeafletRectangleExtensions', function(){
     return {
       extend: function(){
-        L.Rectangle.prototype.scale = 1;
-        L.Rectangle.prototype.prev_scale = 1;
-        L.Rectangle.prototype.format = 'A4';
-        L.Rectangle.prototype.orientation = 'landscape';
         L.Rectangle.prototype.recalculate_bounds = function(){
           var scale_factor = this.scale / this.prev_scale;
           var current_bounds = this.getBounds();
@@ -28,7 +21,7 @@
 
           this.prev_scale = this.scale;
           
-          return L.latLngBounds(
+          this.setBounds(L.latLngBounds(
             new L.LatLng(
               south - lat_increase,
               west - lng_increase
@@ -37,8 +30,7 @@
               north + lat_increase,
               east + lng_increase
             )
-          );
-
+          ));
         }
       }
     }

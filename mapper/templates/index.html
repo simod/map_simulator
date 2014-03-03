@@ -24,7 +24,7 @@
     <div>
         <h2>Areas of interest</h2>
         {% verbatim %}
-        <article ng-repeat="rec in rectangles">Feature: <span ng-bind="rec.id"></span>  Scale > 1: <input type="text" value="{{rec.scale}}" ng-submit="setScale()"></input></article>
+        <article ng-repeat="feature in rectangles" ng-controller="FeatureController">Feature: <span ng-bind="feature.id"></span>  Scale -> 1: <input type="text"  ng-model="feature.scale" ng-keyup="$event.keyCode == 13 ? setScale() : null"></input></article>
         {% endverbatim %}
     </div>
     <!-- build:js scripts/vendor.js -->

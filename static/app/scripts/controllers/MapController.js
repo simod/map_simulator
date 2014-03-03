@@ -4,20 +4,18 @@
   goog.provide('map_controller');
 
   goog.require('leaflet_draw_overrides');
-  goog.require('format_ratio_provider');
   goog.require('leaflet_rectangle_extensions');
 
 
   var module = angular.module('map_controller', [
   'leaflet-directive',
   'leaflet_draw_overrides',
-  'format_ratio_provider',
   'leaflet_rectangle_extensions'
   ]);
 
   module.controller('MapController', function(
     $scope, leafletData, LeafletDrawOverrides, 
-    FormatRatioProvider, LeafletRectangleExtensions
+    LeafletRectangleExtensions
     ){
 
     $scope.rectangles;
@@ -61,9 +59,6 @@
       // we force them to be always active either after a feature add or remove.
       map.on('draw:created', function(e){
         e.layer.addTo(rectangles);
-        e.layer.prev_scale = e.layer.scale = FormatRatioProvider.getScale(e.layer, 'A0');
-        e.layer.scale = 10000;
-        //e.layer.setBounds(e.layer.recalculate_bounds());
         e.layer.id = rect_id;
         rect_id ++;
         $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');

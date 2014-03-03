@@ -22,6 +22,7 @@
           // Reposition the move marker
           bounds = this._shape.getBounds();
           this._moveMarker.setLatLng(bounds.getCenter());
+          this._shape.scale = this._shape.prev_scale = this._shape.getScale();
         };
 
         // Override the create marker method to just show the bottom right one
@@ -67,6 +68,7 @@
             newLatLngs.push([newCenter.lat + offset[0], newCenter.lng + offset[1]]);
           }
           this._shape.setLatLngs(newLatLngs);
+          
           //calculate the new lat and adjust the shape again
           var northWest = this._shape.getBounds().getNorthWest();
           var southEast = this._shape.getBounds().getSouthEast();
