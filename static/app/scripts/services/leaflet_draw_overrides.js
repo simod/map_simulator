@@ -15,7 +15,7 @@
           var bounds;
 
           // Calculate the target lat based on fixed proportions
-          latlng.lat = FormatRatioProvider.getLatLandscape(this._oppositeCorner, latlng);
+          latlng.lat = FormatRatioProvider.getRatioLatLandscape(this._oppositeCorner, latlng);
 
           this._shape.setBounds(L.latLngBounds(latlng, this._oppositeCorner));
 
@@ -35,7 +35,7 @@
         };
 
         // Override the reposizion markers, to just use the botton right
-        L.Edit.Rectangle.prototype._repositionCornerMarkers= function () {
+        L.Edit.Rectangle.prototype._repositionCornerMarkers = function () {
           var corners = this._getCorners();
 
           this._resizeMarkers[0].setLatLng(corners[2]);
@@ -44,7 +44,7 @@
         // Override the drawShape method of the draw tool to respect the format ratio
         L.Draw.Rectangle.prototype._drawShape = function (latlng) {
           // Calculate the target lat based on fixed proportions
-          latlng.lat = FormatRatioProvider.getLatLandscape(this._startLatLng, latlng);
+          latlng.lat = FormatRatioProvider.getRatioLatLandscape(this._startLatLng, latlng);
           
           if (!this._shape) {
             this._shape = new L.Rectangle(new L.LatLngBounds(this._startLatLng, latlng), this.options.shapeOptions);
@@ -52,7 +52,30 @@
           } else {
             this._shape.setBounds(new L.LatLngBounds(this._startLatLng, latlng));
           }
-        }
+        };
+
+        // Override the edit move to preserve the shape based on the lat lon
+        L.Edit.Rectangle.prototype._move = function (newCenter) {
+          var latlngs = this._shape.getLatLngs(),
+            bounds = this._shape.getBounds(),
+            center = bounds.getCenter(),
+            offset, newLatLngs = [];
+
+          // Offset the latlngs to the new center
+          for (var i = 0, l = latlngs.length; i < l; i++) {
+            offset = [latlngs[i].lat - center.lat, latlngs[i].lng - center.lng];
+            newLatLngs.push([newCenter.lat + offset[0], newCenter.lng + offset[1]]);
+          }
+          this._shape.setLatLngs(newLatLngs);
+          //calculate the new lat and adjust the shape again
+          var northWest = this._shape.getBounds().getNorthWest();
+          var southEast = this._shape.getBounds().getSouthEast();
+          southEast.lat = FormatRatioProvider.getRatioLatLandscape(northWest, southEast);
+          this._shape.setBounds(new L.LatLngBounds(northWest, southEast));
+
+          // Reposition the resize markers
+          this._repositionCornerMarkers();
+        };
       }
     }
   });
