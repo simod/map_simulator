@@ -39,15 +39,15 @@
 
           var format_measures = FormatRatioProvider.formats()[format][orientation];
 
-          var lat_landscape_offset = (north - south) * offsets[orientation].top / format_measures.height;
-          var lng_landscape_offset = (east - west) * offsets[orientation].left / format_measures.width;
+          var lat_offset = (north - south) * offsets[orientation].top / format_measures.height;
+          var lng_offset = (east - west) * offsets[orientation].left / format_measures.width;
           
           var inner_heigth = (north - south) * box_ratios[orientation].height;
           var inner_width = (east - west) * box_ratios[orientation].width;
           
           var start_point = new L.LatLng(
-            north - lat_landscape_offset,
-            west + lng_landscape_offset
+            north - lat_offset,
+            west + lng_offset
           );
           var end_point = new L.LatLng(
             start_point.lat - inner_heigth,

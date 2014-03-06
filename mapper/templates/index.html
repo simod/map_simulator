@@ -22,7 +22,9 @@
         </leaflet>
     </div>
     <div class="pull-left">
-        <h4 ng-click="exportKML()">Export KML</h4>
+        {% verbatim %}
+        <button type="submit" class="kml-export btn btn-primary" ng-disabled="rectanglesLength()==0" ng-click="exportKML()">Export KML</button>
+        {% endverbatim %}
         <h3>Areas of interest</h3>
         <div class="features">
             {% verbatim %}
@@ -38,7 +40,7 @@
                 </select></br>
                 <label>Scale</label>
                  1: <input type="text"  ng-model="feature.scale" ng-keyup="$event.keyCode == 13 ? feature.recalculate_bounds() : null"></input></br>
-                 <strong ng-mouseover="toggleInnerBox()" ng-mouseleave="toggleInnerBox()">Show internal map</strong>
+                 <h4 ng-mouseover="toggleInnerBox()" ng-mouseleave="toggleInnerBox()">Hover to show internal map</h4>
             </article>
             {% endverbatim %}
         </div>
