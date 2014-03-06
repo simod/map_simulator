@@ -15,7 +15,8 @@
           var bounds;
 
           // Calculate the target lat based on fixed proportions
-          latlng.lat = FormatRatioProvider.getRatioLatLandscape(this._oppositeCorner, latlng);
+          latlng.lat = FormatRatioProvider.getLatForBounds(
+            this._oppositeCorner, latlng, this._shape.orientation);
 
           this._shape.setBounds(L.latLngBounds(latlng, this._oppositeCorner));
 
@@ -45,7 +46,8 @@
         // Override the drawShape method of the draw tool to respect the format ratio
         L.Draw.Rectangle.prototype._drawShape = function (latlng) {
           // Calculate the target lat based on fixed proportions
-          latlng.lat = FormatRatioProvider.getRatioLatLandscape(this._startLatLng, latlng);
+          latlng.lat = FormatRatioProvider.getLatForBounds(
+            this._startLatLng, latlng);
           
           if (!this._shape) {
             this._shape = new L.Rectangle(new L.LatLngBounds(this._startLatLng, latlng), this.options.shapeOptions);
@@ -72,7 +74,9 @@
           //calculate the new lat and adjust the shape again
           var northWest = this._shape.getBounds().getNorthWest();
           var southEast = this._shape.getBounds().getSouthEast();
-          southEast.lat = FormatRatioProvider.getRatioLatLandscape(northWest, southEast);
+          southEast.lat = FormatRatioProvider.getLatForBounds(
+            northWest, southEast, this._shape.orientation);
+
           this._shape.setBounds(new L.LatLngBounds(northWest, southEast));
 
           // Reposition the resize markers

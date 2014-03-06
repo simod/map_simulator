@@ -5,17 +5,19 @@
 
   goog.require('leaflet_draw_overrides');
   goog.require('leaflet_rectangle_extensions');
-
+  goog.require('kml_service');
+  
 
   var module = angular.module('map_controller', [
-  'leaflet-directive',
-  'leaflet_draw_overrides',
-  'leaflet_rectangle_extensions'
+    'leaflet-directive',
+    'leaflet_draw_overrides',
+    'leaflet_rectangle_extensions',
+    'kml_service',
   ]);
 
   module.controller('MapController', function(
     $scope, leafletData, LeafletDrawOverrides, 
-    LeafletRectangleExtensions
+    LeafletRectangleExtensions, KmlService
     ){
 
     $scope.rectangles;
@@ -37,7 +39,6 @@
     var map = leafletData.getMap();
 
     map.then(function(map){
-
       var rectangles = new L.FeatureGroup().addTo(map);
       $scope.rectangles = rectangles._layers;
 
@@ -68,6 +69,10 @@
         $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');
       });
 
+      $scope.exportKML = function(){
+        var json = KmlService.serializeJson($scope.rectangles);
+        KmlService.requestKml(json);
+      }
     });
   });
 })();

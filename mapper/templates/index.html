@@ -21,11 +21,27 @@
         <leaflet center="center">
         </leaflet>
     </div>
-    <div>
-        <h2>Areas of interest</h2>
-        {% verbatim %}
-        <article ng-repeat="feature in rectangles" ng-controller="FeatureController">Feature: <span ng-bind="feature.id"></span>  Scale -> 1: <input type="text"  ng-model="feature.scale" ng-keyup="$event.keyCode == 13 ? setScale() : null"></input></article>
-        {% endverbatim %}
+    <div class="pull-left">
+        <h4 ng-click="exportKML()">Export KML</h4>
+        <h3>Areas of interest</h3>
+        <div class="features">
+            {% verbatim %}
+            <article class="feature" ng-repeat="feature in rectangles" ng-controller="FeatureController">
+                <label>Title</label>
+                <input type="text" ng-model="feature.title"></input></br>
+                <label>Format</label>
+                <select ng-model="feature.format" ng-options="format for format in formats"></select></br>
+                <label>Orientation</label>
+                <select ng-model="feature.orientation" ng-change="switchOrientation()">
+                    <option value="landscape" selected="selected">Landscape</option>
+                    <option value="portrait">Portrait</option>
+                </select></br>
+                <label>Scale</label>
+                 1: <input type="text"  ng-model="feature.scale" ng-keyup="$event.keyCode == 13 ? feature.recalculate_bounds() : null"></input></br>
+                 <strong ng-mouseover="toggleInnerBox()" ng-mouseleave="toggleInnerBox()">Show internal map</strong>
+            </article>
+            {% endverbatim %}
+        </div>
     </div>
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
+
+{% for feature in features %}
+<Placemark> 
+  <name>{{ feature.properties.title }}</name> 
+
+  <description>{{ feature.properties.scale }}</description>
+  <MultiGeometry>
+    <Polygon>   
+      <outerBoundaryIs>  
+        <LinearRing>
+          <coordinates>
+            {% for coords in feature.geometry.coordinates.0 %}
+            {{coords.0}},{{coords.1}},0
+            {% endfor %}
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </MultiGeometry>
+ 
+  <Style> 
+    <LabelStyle>
+      <color>00000000</color>
+      <scale>0</scale>
+    </LabelStyle>
+    <LineStyle>
+      <color>501478FF</color>
+      <width>5</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>5014B4FF</color>
+    </PolyStyle>
+    <BalloonStyle>
+      <text><![CDATA[
+        <strong>Title</strong>: {{feature.properties.title}}</br>
+        <strong>Scale</strong>: {{feature.properties.scale}}</br>
+        <strong>Format</strong>: {{feature.properties.format}}</br>
+        <strong>Orientation</strong>: {{feature.properties.orientation}}</br>
+      ]]> </text>
+    </BalloonStyle>
+  </Style>
+</Placemark>
+{% endfor %}
+</Document></kml>

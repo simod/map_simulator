@@ -3,46 +3,57 @@
   goog.provide('feature_controller');
 
   goog.require('format_ratio_provider');
+  goog.require('inner_map_provider')
 
-  var module = angular.module('feature_controller', ['format_ratio_provider']);
-  module.controller('FeatureController', function($scope, FormatRatioProvider){
+  var module = angular.module('feature_controller', ['format_ratio_provider', 'inner_map_provider']);
+  module.controller('FeatureController', function($scope, FormatRatioProvider, InnerMapProvider){
     // set the initial parameters
-  var formats = FormatRatioProvider.formats;
-    $scope.feature.format = 'A0'
-    $scope.feature.orientation = 'landscape';    
+    $scope.formats = Object.keys(FormatRatioProvider.formats()).reverse();
+    $scope.feature.format = $scope.formats[0];
+    $scope.feature.orientation = 'landscape';
+    $scope.feature.title = 'Title';
+    $scope.$watch('feature.format', function(){
+      $scope.feature.prev_scale = $scope.feature.scale = $scope.feature.getScale();
+    });
 
-    $scope.feature.prev_scale = $scope.feature.scale = getScale();
+    $scope.$watch('feature.title', function(){
+      $scope.feature.bindPopup($scope.feature.title)._openPopup({latlng: $scope.feature.getBounds().getCenter()});
+    });
 
-    // Set the scale adjust the rectangle
-    $scope.setScale = function(){
-      $scope.feature.recalculate_bounds();
+    //switches the orientation between landscape and portrait
+    $scope.switchOrientation =  function(){
+      var bounds = $scope.feature.getBounds();
+      var northWest = bounds.getNorthWest();
+      var southEast = bounds.getSouthEast();
+      // Calculate the lng increase which is the current lat distance
+      var lng_increase = bounds.getNorthEast().lat - southEast.lat;
+      
+      southEast.lng = northWest.lng + lng_increase;
+      // Calculate the ending lat taking into account the deg lenght changes
+      southEast.lat = FormatRatioProvider.getLatForBounds(
+        northWest, southEast, $scope.feature.orientation);
+      $scope.feature.setBounds(L.latLngBounds(northWest, southEast));
     };
 
-    function _deg_length(p1, p2) {
-      var deglen = 111.12 * L.LatLng.RAD_TO_DEG;
-      var p1lat = p1.lat * L.LatLng.DEG_TO_RAD,
-          p1lng = p1.lng * L.LatLng.DEG_TO_RAD,
-          p2lat = p2.lat * L.LatLng.DEG_TO_RAD,
-          p2lng = p2.lng * L.LatLng.DEG_TO_RAD;
-      return deglen * Math.acos(Math.sin(p1lat) * Math.sin(p2lat) +
-          Math.cos(p1lat) * Math.cos(p2lat) * Math.cos(p2lng - p1lng));
-    };
-
-    function _get_scale_from_bounds(bounds, format, orientation){
-      // Calculate the degree lenght in the center of the rectangle
-      var lat = bounds.getCenter().lat;
-      var avg_west = L.latLng(lat, bounds.getNorthWest().lng);
-      var avg_east = L.latLng(lat, bounds.getNorthEast().lng);
-      var deg_length = _deg_length(avg_west, avg_east);
-      var width__km = formats[$scope.feature.format][$scope.feature.orientation].width / 1000000;
-      return deg_length / width__km;
-    };
-
-    function getScale(){  
-      return _get_scale_from_bounds(
+    $scope.feature.getScale = function(){  
+      return FormatRatioProvider.getScaleFromBounds(
         $scope.feature.getBounds(), $scope.feature.format, $scope.feature.orientation);
-    }
-    $scope.feature.getScale = getScale;
+    };
 
+    var innerBox;
+    $scope.toggleInnerBox = function(){
+      var map = $scope.feature._map;
+      if(typeof innerBox != 'undefined' && map.hasLayer(innerBox)){
+        map.removeLayer(innerBox);
+      }else{
+        innerBox = InnerMapProvider.innerMap(
+          $scope.feature.getBounds(), 
+          $scope.feature.format, 
+          $scope.feature.orientation
+        );
+        map.addLayer(innerBox);
+      }
+
+    }
   });
 })();
