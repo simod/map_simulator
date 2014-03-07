@@ -78,7 +78,7 @@
             northWest, southEast, this._shape.orientation);
 
           this._shape.setBounds(new L.LatLngBounds(northWest, southEast));
-
+          this._shape.prev_scale = this._shape.scale = this._shape.getScale();
           // Reposition the resize markers
           this._repositionCornerMarkers();
         };

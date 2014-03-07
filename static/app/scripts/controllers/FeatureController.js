@@ -26,7 +26,7 @@
       var northWest = bounds.getNorthWest();
       var southEast = bounds.getSouthEast();
       // Calculate the lng increase which is the current lat distance
-      var lng_increase = bounds.getNorthEast().lat - southEast.lat;
+      var lng_increase = (northWest.lat - southEast.lat) / Math.cos(bounds.getCenter().lat * L.LatLng.DEG_TO_RAD);
       
       southEast.lng = northWest.lng + lng_increase;
       // Calculate the ending lat taking into account the deg lenght changes

@@ -7,8 +7,8 @@
   module.provider('FormatRatioProvider', function(){
 
     // corrected by the internal map dimensions
-    var A4_width_mm = 170; 
-    var A4_height_mm = 279;
+    var A4_width_mm = 210; 
+    var A4_height_mm = 297;
 
     var getFormats = function(width, height){
       return {
@@ -87,13 +87,14 @@
       var west = startLatLng.lng;
       var north = startLatLng.lat;
       var east = endLatLng.lng;
+      var south = endLatLng.lat;
       var ratio = _computeRatio(orientation);
-      
+      var center = new L.LatLngBounds(startLatLng, endLatLng).getCenter()
       // Calculate the south coordinate by keeping into accout the
       // degree lenght change on latitude. This because the feature has to respect
       // the A series paper size ratio.
       return north - ratio * (east - west) * 
-      Math.cos(north * L.LatLng.DEG_TO_RAD);
+      Math.cos(center.lat * L.LatLng.DEG_TO_RAD);
     };
 
     this.$get = function(){
