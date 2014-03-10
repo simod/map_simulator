@@ -23,7 +23,10 @@
           // Reposition the move marker
           bounds = this._shape.getBounds();
           this._moveMarker.setLatLng(bounds.getCenter());
+          // Recalculate the scale.
           this._shape.scale = this._shape.prev_scale = this._shape.getScale();
+          // Redraw the inner map box
+          this._shape.toggleInnerBox();
         };
 
         // Override the create marker method to just show the bottom right one
@@ -81,6 +84,8 @@
           this._shape.prev_scale = this._shape.scale = this._shape.getScale();
           // Reposition the resize markers
           this._repositionCornerMarkers();
+          // Redraw the inner map box
+          this._shape.toggleInnerBox();
         };
       }
     }

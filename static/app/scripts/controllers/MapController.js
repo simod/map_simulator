@@ -60,6 +60,9 @@
      
       map.on('draw:deleted', function(e){
         $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');
+        for(var i in e.layers._layers){
+          map.removeLayer(e.layers._layers[i].innerBox);
+        }
       });
 
       $scope.exportKML = function(){

@@ -31,6 +31,8 @@
               east + lng_increase
             )
           ));
+          // Redraw the inner map box
+          this.toggleInnerBox();
         }
       }
     }

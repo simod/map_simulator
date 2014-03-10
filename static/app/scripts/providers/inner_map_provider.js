@@ -24,7 +24,7 @@
         left: 18.1
       },
       portrait: {
-        top: 14.6,
+        top: 146,
         left: 18.1
       }
     };

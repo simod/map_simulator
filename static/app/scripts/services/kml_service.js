@@ -11,7 +11,7 @@
           features: []
         }
         for(var i in layers){
-          var feature = layers[i].toGeoJSON();
+          var feature = layers[i].innerBox.toGeoJSON();
           feature.properties['title'] = layers[i].title;
           feature.properties['format'] = layers[i].format;
           feature.properties['orientation'] = layers[i].orientation;
