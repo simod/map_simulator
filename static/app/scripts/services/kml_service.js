@@ -22,7 +22,7 @@
       },
       requestKml: function(json){
         $http.post('maps', {features: json}).success(function(){
-          location.href='static/data/maps.kml';
+          location.href='static/kml/map.kml';
         });
       }
     }
