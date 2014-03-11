@@ -2,48 +2,26 @@
 (function(){
   goog.provide('inner_map_provider');
 
-  goog.require('format_ratio_provider');
+   goog.require('measures_provider');
 
-  var module = angular.module('inner_map_provider', ['format_ratio_provider']);
+  var module = angular.module('inner_map_provider', ['measures_provider']);
   module.provider('InnerMapProvider', function(){
 
-    var box_ratios = {
-      landscape: {
-        width: 0.81,
-        height: 0.94
-      },
-      portrait: {
-        width: 0.94,
-        height: 0.72
-      }
-    };
-
-    var offsets = {
-      landscape: {
-        top: 18.1,
-        left: 18.1
-      },
-      portrait: {
-        top: 146,
-        left: 18.1
-      }
-    };
-
-    this.$get = function(FormatRatioProvider){
+    this.$get = function(MeasuresProvider){
       return {
         innerMap: function(bounds, format, orientation){
           var north = bounds.getNorth();
           var south = bounds.getSouth();
           var west = bounds.getWest();
           var east = bounds.getEast();
+          // Get the format to work width
+          var format_measures = MeasuresProvider.measures[format][orientation];
 
-          var format_measures = FormatRatioProvider.formats()[format][orientation];
-
-          var lat_offset = (north - south) * offsets[orientation].top / format_measures.height;
-          var lng_offset = (east - west) * offsets[orientation].left / format_measures.width;
+          var lat_offset = (north - south) * format_measures.inner_box_offsets.top / format_measures.height;
+          var lng_offset = (east - west) * format_measures.inner_box_offsets.left / format_measures.width;
           
-          var inner_heigth = (north - south) * box_ratios[orientation].height;
-          var inner_width = (east - west) * box_ratios[orientation].width;
+          var inner_heigth = (north - south) * format_measures.inner_box_ratios.height;
+          var inner_width = (east - west) * format_measures.inner_box_ratios.width;
           
           var start_point = new L.LatLng(
             north - lat_offset,

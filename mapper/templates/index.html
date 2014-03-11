@@ -34,7 +34,7 @@
                 <label>Format</label>
                 <select ng-model="feature.format" ng-options="format for format in formats"></select></br>
                 <label>Orientation</label>
-                <select ng-model="feature.orientation" ng-change="switchOrientation()">
+                <select ng-model="feature.orientation" ng-change="feature.switchOrientation()">
                     <option value="landscape" selected="selected">Landscape</option>
                     <option value="portrait">Portrait</option>
                 </select></br>

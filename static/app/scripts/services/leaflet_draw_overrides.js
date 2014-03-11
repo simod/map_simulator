@@ -26,7 +26,7 @@
           // Recalculate the scale.
           this._shape.scale = this._shape.prev_scale = this._shape.getScale();
           // Redraw the inner map box
-          this._shape.toggleInnerBox();
+          this._shape.updateInnerBox();
         };
 
         // Override the create marker method to just show the bottom right one
@@ -85,7 +85,7 @@
           // Reposition the resize markers
           this._repositionCornerMarkers();
           // Redraw the inner map box
-          this._shape.toggleInnerBox();
+          this._shape.updateInnerBox();
         };
       }
     }
