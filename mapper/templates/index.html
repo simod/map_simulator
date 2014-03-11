@@ -67,5 +67,14 @@
     <script>
         goog.require('mapper');
     </script>
+    <script>
+    var module = angular.module('mapper');
+      // Configure general ajax parameters
+      module.config(function($httpProvider) {
+        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+      });
+    </script>
 </body>
 </html>
