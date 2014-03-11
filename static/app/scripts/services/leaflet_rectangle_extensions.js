@@ -38,7 +38,7 @@
             )
           ));
           // Redraw the inner map box
-          this.toggleInnerBox();
+          this.updateInnerBox();
         };
 
         /** 
