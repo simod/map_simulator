@@ -44,6 +44,7 @@
             {% endverbatim %}
         </div>
     </div>
+    {% csrf_token %}
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="{% static "bower_components/jquery/jquery.js" %}"></script>
@@ -71,18 +72,7 @@
     var module = angular.module('mapper');
       // Configure general ajax parameters
       module.config(function($httpProvider) {
-        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-      });
-      module.run(function($http){
-        $http.get('.').success(function(){
-            module.config(function($httpProvider) {
-                $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-                $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-                $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-            });
-        });
+        $httpProvider.defaults.headers.common['X-CSRFToken'] = $('input[name=csrfmiddlewaretoken]').val();
       });
     </script>
 </body>
