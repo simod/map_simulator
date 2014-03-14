@@ -30,8 +30,7 @@ body {
 }
 
 .features{
-    max-width: 195px;
-    min-width: 200px;
+    width: 200px;
     height: 433px;
     overflow: auto;
 }
