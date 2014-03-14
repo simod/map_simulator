@@ -19,7 +19,7 @@ body {
   border: 1px solid #C0C0C0;
   padding: 0px;
   min-width: 500px;
-  max-width: 735px;
+  max-width: 730px;
   width: 100%;
 }
 
@@ -30,7 +30,7 @@ body {
 }
 
 .features{
-    width: 200px;
+    width: 205px;
     height: 433px;
     overflow: auto;
 }
