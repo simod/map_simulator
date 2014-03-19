@@ -30,7 +30,7 @@
       var east = endLatLng.lng;
       var south = endLatLng.lat;
       var ratio = _computeRatio(orientation);
-      var center = new L.LatLngBounds(startLatLng, endLatLng).getCenter()
+      var center = new L.LatLngBounds(startLatLng, endLatLng).getCenter();
       // Calculate the south coordinate by keeping into accout the
       // degree lenght change on latitude. This because the feature has to respect
       // the A series paper size ratio.
