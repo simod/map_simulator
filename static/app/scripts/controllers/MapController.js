@@ -65,6 +65,15 @@
         }
       });
 
+      // reset the rectangle styles is the map is clicked (deselect)
+
+      map.deselectAllFeatures = function(){
+        for(var i in $scope.rectangles){
+          $scope.rectangles[i].deselectFeature();
+        }
+      }
+      map.on('click', map.deselectAllFeatures);
+
       $scope.exportKML = function(){
         var json = KmlService.serializeJson($scope.rectangles);
         KmlService.requestKml(json);

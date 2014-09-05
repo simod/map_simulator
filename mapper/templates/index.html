@@ -28,7 +28,7 @@
         <h3>Areas of interest</h3>
         <div class="features">
             {% verbatim %}
-            <article class="feature" ng-repeat="feature in rectangles" ng-controller="FeatureController">
+            <article class="feature" ng-repeat="feature in rectangles" ng-controller="FeatureController" id="feature-{{feature._leaflet_id}}" ng-click="feature.selectFeature()">
                 <label>Title</label>
                 <input type="text" ng-model="feature.title"></input></br>
                 <label>Format</label>

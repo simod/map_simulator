@@ -2,7 +2,7 @@
 (function(){
   goog.provide('inner_map_provider');
 
-   goog.require('measures_provider');
+  goog.require('measures_provider');
 
   var module = angular.module('inner_map_provider', ['measures_provider']);
   module.provider('InnerMapProvider', function(){

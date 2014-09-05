@@ -25,5 +25,26 @@
 
     //Draw inner box at creation
     feature.updateInnerBox();
+
+    feature.selectFeature = function(){
+      this._map.deselectAllFeatures();
+      this.setStyle({
+          color: '#FF9933'
+      });
+      $('#feature-'+this._leaflet_id).addClass('feature-selected');
+      this.openPopup();
+    };
+
+    feature.deselectFeature = function(){
+      this.setStyle({
+          color: '#f06eaa'
+      });
+      $('#feature-'+this._leaflet_id).removeClass('feature-selected');
+      this.closePopup();
+    }
+    
+    feature.on({
+      click: feature.selectFeature
+    });
   });
 })();
