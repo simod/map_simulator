@@ -13,14 +13,14 @@
     $scope.formats = Object.keys(MeasuresProvider.measures).reverse();
     feature.format = $scope.formats[0];
     feature.orientation = 'landscape';
-    feature.title = 'Title';
+    feature.title = 'Map';
 
     $scope.$watch('feature.format', function(){
       feature.prev_scale = feature.scale = feature.getScale();
     });
 
     $scope.$watch('feature.title', function(){
-      feature.bindPopup(feature.title)._openPopup({latlng: feature.getBounds().getCenter()});
+      feature.bindPopup(feature.title);
     });
 
     //Draw inner box at creation
@@ -41,8 +41,12 @@
       });
       $('#feature-'+this._leaflet_id).removeClass('feature-selected');
       this.closePopup();
-    }
+    };
     
+    feature.zoomToFeature = function(){
+      this._map.fitBounds(this.getBounds());
+    };
+
     feature.on({
       click: feature.selectFeature
     });
