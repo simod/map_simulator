@@ -38,7 +38,8 @@
 
     map.then(function(map){
       var rectangles = new L.FeatureGroup().addTo(map);
-      $scope.rectangles = rectangles._layers;
+      //$scope.rectangles = rectangles._layers;
+      $scope.rectangles = [];
       var drawControl = new L.Control.Draw({
         draw: {
           marker: null,
@@ -54,6 +55,7 @@
       // For some reason the edit buttons are toggled every feature addition
       // we force them to be always active either after a feature add or remove.
       map.on('draw:created', function(e){
+        $scope.rectangles.push(e.layer);
         e.layer.addTo(rectangles);
         $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');
         e.layer.selectFeature();
@@ -83,7 +85,7 @@
       }
 
       $scope.rectanglesLength = function(){
-        return Object.keys($scope.rectangles).length;
+        return $scope.rectangles.length;
       }
     });
   });

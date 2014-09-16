@@ -34,7 +34,7 @@
       $('#feature-'+this._leaflet_id).addClass('feature-selected');
       if (!this._popup._isOpen){
         this.openPopup();
-        var top_scroll = Object.keys($scope.rectangles).indexOf(String(this._leaflet_id)) * 150;
+        var top_scroll = $scope.rectangles.indexOf(this) * 150;
         $('.features').animate({
           scrollTop: top_scroll
         });
