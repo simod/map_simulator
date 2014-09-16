@@ -27,12 +27,18 @@
     feature.updateInnerBox();
 
     feature.selectFeature = function(){
-      this._map.deselectAllFeatures();
+      this._map.deselectAllFeatures(this);
       this.setStyle({
           color: '#FF9933'
       });
       $('#feature-'+this._leaflet_id).addClass('feature-selected');
-      this.openPopup();
+      if (!this._popup._isOpen){
+        this.openPopup();
+        var top_scroll = Object.keys($scope.rectangles).indexOf(String(this._leaflet_id)) * 150;
+        $('.features').animate({
+          scrollTop: top_scroll
+        });
+      }    
     };
 
     feature.deselectFeature = function(){

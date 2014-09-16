@@ -56,6 +56,7 @@
       map.on('draw:created', function(e){
         e.layer.addTo(rectangles);
         $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');
+        e.layer.selectFeature();
       });
      
       map.on('draw:deleted', function(e){
@@ -67,9 +68,11 @@
 
       // reset the rectangle styles is the map is clicked (deselect)
 
-      map.deselectAllFeatures = function(){
+      map.deselectAllFeatures = function(current_feature){
         for(var i in $scope.rectangles){
-          $scope.rectangles[i].deselectFeature();
+          if ($scope.rectangles[i]._leaflet_id != current_feature._leaflet_id){
+            $scope.rectangles[i].deselectFeature();
+          }
         }
       }
       map.on('click', map.deselectAllFeatures);
