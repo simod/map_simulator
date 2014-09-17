@@ -50,7 +50,7 @@
     };
     
     feature.zoomToFeature = function(){
-      this._map.fitBounds(this.getBounds());
+      this._map.fitBounds(this.getBounds(), {padding: [50,50]});
     };
 
     feature.on({
