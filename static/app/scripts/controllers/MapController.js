@@ -37,6 +37,16 @@
     var map = leafletData.getMap();
 
     map.then(function(map){
+      //add fullscreen control
+      new L.control.fullscreen().addTo(map);
+
+      map.on('enterFullscreen', function () {
+        $('#sidebar').addClass('fullscreen');
+      });
+      map.on('exitFullscreen', function () {
+        $('#sidebar').removeClass('fullscreen');
+      });
+
       var rectangles = new L.FeatureGroup().addTo(map);
       //$scope.rectangles = rectangles._layers;
       $scope.rectangles = [];

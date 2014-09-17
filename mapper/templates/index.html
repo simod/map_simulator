@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static "bower_components/leaflet-dist/leaflet.css" %}">
     <link rel="stylesheet" href="{% static "bower_components/leaflet.draw/dist/leaflet.draw.css" %}">
     <link rel="stylesheet" href="{% static "bower_components/bootstrap/dist/css/bootstrap.css" %}">
+    <link rel="stylesheet" href="{% static "bower_components/leaflet.fullscreen/Control.Fullscreen.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
   </head>
   <body ng-controller="MapController">
@@ -21,7 +22,7 @@
         <leaflet center="center">
         </leaflet>
     </div>
-    <div class="pull-left">
+    <div class="pull-left" id="sidebar">
         {% verbatim %}
         <button type="submit" class="kml-export btn btn-primary" ng-disabled="rectanglesLength()==0" ng-click="exportKML()">Export KML</button>
         {% endverbatim %}
@@ -55,6 +56,7 @@
     <script src="{% static "bower_components/bootstrap/dist/js/bootstrap.js" %}"></script>
     <script src="{% static "bower_components/leaflet-dist/leaflet.js" %}"></script>
     <script src="{% static "bower_components/leaflet.draw/dist/leaflet.draw.js" %}"></script>
+    <script src="{% static "bower_components/leaflet.fullscreen/Control.Fullscreen.js" %}"></script>
     <script src="{% static "bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js" %}"></script>
     
     <!-- endbower -->

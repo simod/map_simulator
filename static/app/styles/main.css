@@ -69,3 +69,17 @@ article input {
 .feature-scale{
   width: 80px;
 }
+
+.fullscreen{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 9999999999;
+  background: white;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+#sidebar{
+  padding-left: 10px;
+}
