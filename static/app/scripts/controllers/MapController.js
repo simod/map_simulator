@@ -64,6 +64,7 @@
       map.on('draw:deleted', function(e){
         $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');
         for(var i in e.layers._layers){
+          $scope.rectangles.splice($scope.rectangles.indexOf(e.layers._layers[i]),1);
           map.removeLayer(e.layers._layers[i].innerBox);
         }
       });
