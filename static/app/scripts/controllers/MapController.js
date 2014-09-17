@@ -52,6 +52,7 @@
         }
       }).addTo(map);
 
+      // Push the drawn feature to the angular scope
       // For some reason the edit buttons are toggled every feature addition
       // we force them to be always active either after a feature add or remove.
       map.on('draw:created', function(e){
@@ -60,7 +61,8 @@
         $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');
         e.layer.selectFeature();
       });
-     
+
+      //Splice the deleted feature from the angular scope and remove the inner box
       map.on('draw:deleted', function(e){
         $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');
         for(var i in e.layers._layers){
@@ -70,7 +72,6 @@
       });
 
       // reset the rectangle styles is the map is clicked (deselect)
-
       map.deselectAllFeatures = function(current_feature){
         for(var i in $scope.rectangles){
           if ($scope.rectangles[i]._leaflet_id != current_feature._leaflet_id){
