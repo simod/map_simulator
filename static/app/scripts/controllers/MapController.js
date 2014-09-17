@@ -42,9 +42,11 @@
 
       map.on('enterFullscreen', function () {
         $('#sidebar').addClass('fullscreen');
+        map.zoomIn(2);
       });
       map.on('exitFullscreen', function () {
         $('#sidebar').removeClass('fullscreen');
+        map.zoomOut(2);
       });
 
       var rectangles = new L.FeatureGroup().addTo(map);
