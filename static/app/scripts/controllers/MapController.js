@@ -100,7 +100,7 @@
           }
         }
       }
-      map.on('click', map.deselectAllFeatures);
+      map.on('mousedown', map.deselectAllFeatures);
 
       $scope.exportKML = function(){
         var json = KmlService.serializeJson($scope.rectangles);
