@@ -22,9 +22,18 @@
 
     angular.extend($scope, {
       center: {
-        lat: 5.6,
+        lat: 20,
         lng: 3.9,
-        zoom: 2
+        zoom: 3
+      },
+      layers: {
+        baselayers: {
+          osm: {
+              name: 'MapQuest',
+              url: 'http://otile4.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
+              type: 'xyz'
+          }
+        }
       }
     });
 
