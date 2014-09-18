@@ -20,7 +20,7 @@
     });
 
     $scope.$watch('feature.title', function(){
-      feature.bindPopup(feature.title);
+      feature.bindPopup(feature.title, {closeOnClick: false});
     });
 
     //Draw inner box at creation
