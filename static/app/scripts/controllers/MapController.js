@@ -51,11 +51,11 @@
       // Hook the enter/exit fullscreen behaviors
       map.on('enterFullscreen', function () {
         $('#sidebar').addClass('fullscreen');
-        map.zoomIn(2);
+        map.zoomIn(1);
       });
       map.on('exitFullscreen', function () {
         $('#sidebar').removeClass('fullscreen');
-        map.zoomOut(2);
+        map.zoomOut(1);
       });
 
       var rectangles = new L.FeatureGroup().addTo(map);
