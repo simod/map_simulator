@@ -120,6 +120,10 @@
         KmlService.requestKml(json);
       }
 
+      $scope.zoomAll = function(){
+        map.fitBounds(rectangles.getBounds());
+      }
+
     });
   });
 })();

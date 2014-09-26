@@ -23,9 +23,8 @@
         </leaflet>
     </div>
     <div class="pull-left" id="sidebar">
-        {% verbatim %}
-        <button type="submit" class="kml-export btn btn-primary" ng-disabled="rectangles.length==0" ng-click="exportKML()">Export KML</button>
-        {% endverbatim %}
+        <button type="submit" class="kml-export btn btn-primary btn-sm" ng-disabled="rectangles.length==0" ng-click="exportKML()">Export KML</button>
+        <button type="submit" class="zoom-all btn btn-primary btn-sm" ng-disabled="rectangles.length==0" ng-click="zoomAll()">Zoom All</button>
         <h3>Areas of interest</h3>
         <div class="features">
             {% verbatim %}
