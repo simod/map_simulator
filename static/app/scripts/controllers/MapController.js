@@ -52,6 +52,7 @@
       map.on('enterFullscreen', function () {
         $('#sidebar').addClass('fullscreen');
         map.zoomIn(1);
+        map.panBy(L.point(20, 20));
       });
       map.on('exitFullscreen', function () {
         $('#sidebar').removeClass('fullscreen');

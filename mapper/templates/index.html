@@ -29,7 +29,7 @@
         <h3>Areas of interest</h3>
         <div class="features">
             {% verbatim %}
-            <article class="feature" ng-repeat="feature in rectangles" ng-controller="FeatureController" id="feature-{{feature._leaflet_id}}" ng-mouseover="feature.selectFeature()">
+            <article class="feature" ng-repeat="feature in rectangles" ng-controller="FeatureController" id="feature-{{feature._leaflet_id}}" ng-click="feature.selectFeature()">
                 <label>Title:</label>
                 <input type="text" ng-model="feature.title"></input></br>
                 <label>Format:</label>
@@ -65,6 +65,10 @@
     <script>
       window.CLOSURE_NO_DEPS = true;
       window.CLOSURE_BASE_PATH = ".";
+      //override, leflet fullscreen to allow keyboard input
+      fullScreenApi.requestFullScreen = function(el) {
+        return (this.prefix === '') ? el.requestFullscreen() : el[this.prefix + 'RequestFullScreen'](Element.ALLOW_KEYBOARD_INPUT);
+        };
     </script>
 
     <script src="{% static "bower_components/closure-library/closure/goog/base.js" %}"></script>

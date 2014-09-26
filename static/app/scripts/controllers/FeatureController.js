@@ -21,6 +21,8 @@
 
     $scope.$watch('feature.title', function(){
       feature.bindPopup(feature.title, {closeOnClick: false});
+      feature.closePopup();
+      feature.openPopup();
     });
 
     //Draw inner box at creation
