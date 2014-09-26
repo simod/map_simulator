@@ -36,11 +36,11 @@
       $('#feature-'+this._leaflet_id).addClass('feature-selected');
       if (!this._popup._isOpen){
         this.openPopup();
-        var top_scroll = $scope.rectangles.indexOf(this) * 150;
-        $('.features').animate({
-          scrollTop: top_scroll
-        });
-      }    
+      };
+      var top_scroll = $scope.rectangles.indexOf(this) * 150;
+      $('.features').animate({
+        scrollTop: top_scroll
+      });
     };
 
     feature.deselectFeature = function(){
