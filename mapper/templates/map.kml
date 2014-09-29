@@ -39,7 +39,7 @@
         <strong>Scale</strong>: {{feature.properties.scale}}</br>
         <strong>Format</strong>: {{feature.properties.format}}</br>
         <strong>Orientation</strong>: {{feature.properties.orientation}}</br>
-      ]]> </text>
+      ]]></text>
     </BalloonStyle>
   </Style>
 </Placemark>

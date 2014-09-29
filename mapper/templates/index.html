@@ -23,8 +23,9 @@
         </leaflet>
     </div>
     <div class="pull-left" id="sidebar">
-        <button type="submit" class="kml-export btn btn-primary btn-sm" ng-disabled="rectangles.length==0" ng-click="exportKML()">Export KML</button>
+        <button type="submit" class="kml-export btn btn-primary btn-sm" ng-disabled="rectangles.length==0" ng-click="exportKml()">Export KML</button>
         <button type="submit" class="zoom-all btn btn-primary btn-sm" ng-disabled="rectangles.length==0" ng-click="zoomAll()">Zoom All</button>
+        <button type="submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#upload_kml">Upload KML</button>
         <h3>Areas of interest</h3>
         <div class="features">
             {% verbatim %}
@@ -46,6 +47,10 @@
             </article>
             {% endverbatim %}
         </div>
+    </div>
+    <div class="modal fade" id="upload_kml" ng-controller="UploadController">
+        <input type="file" class="btn btn-sm" file-model="kmlFile"\>
+        <button class="btn btn-sm" id="submit_kml" ng-click="sendKml()">Upload KML</button>
     </div>
     {% csrf_token %}
     <!-- build:js scripts/vendor.js -->

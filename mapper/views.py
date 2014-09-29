@@ -14,3 +14,9 @@ class SerializeKML(View):
         the_kml.write(render_to_string('map.kml', {'features': payload['features']['features']}))
         the_kml.close()
         return HttpResponse('ok')
+
+
+class DeserializeKML(View):
+    def post(self, request, *args, **kwargs):
+        import ipdb; ipdb.set_trace()
+        pass

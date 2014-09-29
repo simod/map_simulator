@@ -115,9 +115,13 @@
       map.on('mousedown', map.deselectAllFeatures);
 
       // export in kml function
-      $scope.exportKML = function(){
+      $scope.exportKml = function(){
         var json = KmlService.serializeJson($scope.rectangles);
         KmlService.requestKml(json);
+      }
+
+      $scope.sendKml = function(){
+        KmlService.sendKml();
       }
 
       $scope.zoomAll = function(){
