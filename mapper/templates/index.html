@@ -41,8 +41,8 @@
                 </select></br>
                 <label>Scale</label>
                  1: <input type="text"  ng-model="feature.scale" ng-keyup="$event.keyCode == 13 ? feature.recalculate_bounds() : null" class="feature-scale"></input></br>
-                <strong>Lat: </strong><span ng-bind="feature._latlngs[1].lat | number:4"></span>
-                <strong>Lng: </strong><span ng-bind="feature._latlngs[1].lng | number:4"></span></br>
+                <strong>N: </strong><span ng-bind="feature._latlngs[1].lat | number:4"></span>
+                <strong>W: </strong><span ng-bind="feature._latlngs[1].lng | number:4"></span></br>
                 <button ng-click="feature.zoomToFeature()" class="btn btn-xs btn-primary">Zoom</button>
             </article>
             {% endverbatim %}
