@@ -6,6 +6,7 @@
   goog.require('leaflet_draw_overrides');
   goog.require('leaflet_rectangle_extensions');
   goog.require('kml_service');
+  goog.require('inner_map_provider');
 
   var module = angular.module('map_controller', [
     'leaflet-directive',
@@ -16,7 +17,7 @@
 
   module.controller('MapController', function(
     $scope, leafletData, LeafletDrawOverrides, 
-    LeafletRectangleExtensions, KmlService
+    LeafletRectangleExtensions, KmlService, InnerMapProvider
     ){
 
     angular.extend($scope, {
@@ -128,6 +129,29 @@
         map.fitBounds(rectangles.getBounds());
       }
 
+
+      // To Restore form existing KML we pare a GeoJson layer
+      // which contains the inner boxses, so we have to recreate the outer map
+      // and push it to the rectangles. The inner map will be created by the app
+      $scope.$on('kml_loaded', function(event, data){
+        L.geoJson(data, {
+          onEachFeature: function (feature, layer) {
+            var rectangle = InnerMapProvider.outerMap(
+              layer.getBounds(),
+              feature.properties.format,
+              feature.properties.orientation
+            )
+            rectangle.setStyle({color: '#f06eaa'});
+            
+            $scope.rectangles.push(rectangle);
+            rectangle.addTo(rectangles);
+            rectangle.title = feature.properties.title;
+            rectangle.format = feature.properties.format;
+            rectangle.orientation = feature.properties.orientation;
+            rectangle.scale = feature.properties.scale;
+          }
+        });
+      });
     });
   });
 })();

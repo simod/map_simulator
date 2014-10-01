@@ -3,7 +3,7 @@
   goog.provide('kml_service');
 
   var module = angular.module('kml_service', []);
-  module.factory('KmlService', function($http, $window){
+  module.factory('KmlService', function($rootScope, $http, $window){
     return {
       serializeJson: function(layers){
         var json = {
@@ -32,9 +32,11 @@
           transformRequest: angular.identity,
           headers: {'Content-Type': undefined}
         })
-        .success(function(){
+        .success(function(data){
+          $rootScope.$broadcast('kml_loaded', data.features);
         })
-        .error(function(){
+        .error(function(data){
+          alert(data);
         });
       }
     }

@@ -79,3 +79,9 @@ article input {
   padding: 10px;
   border: 1px solid black;
 }
+
+#upload_kml{
+  width: 300px;
+  height: 400px;
+  background: white;
+}

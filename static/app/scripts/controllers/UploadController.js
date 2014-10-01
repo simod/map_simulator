@@ -13,7 +13,6 @@
 
     $scope.sendKml = function(){
       var file = $scope.kmlFile;
-      console.log('file is ' + JSON.stringify(file));
       var uploadUrl = "/maps/from-kml";
       KmlService.sendKml(file, uploadUrl);
     };

@@ -6,6 +6,8 @@ from django.views.generic.base import View
 from django.http import HttpResponse
 from django.conf import settings
 
+from .utils import KML
+
 
 class SerializeKML(View):
     def post(self, request, *args, **kwargs):
@@ -18,5 +20,15 @@ class SerializeKML(View):
 
 class DeserializeKML(View):
     def post(self, request, *args, **kwargs):
-        import ipdb; ipdb.set_trace()
-        pass
+        
+        kml_file = request.FILES.get('file', None)
+        if not kml_file:
+            return HttpResponse('No files uploaded', status=400)
+
+        kml = KML(kml_file)
+
+        name_checked = kml.check_name()
+        if 'error' in kml.check_name():
+            return HttpResponse(name_checked['error'], status=400)
+        
+        return HttpResponse(json.dumps(kml.extract_features()))

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
-<Document xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
-
+<Document>
+<atom:author>
+  <atom:name>
+    jrc-map-simulator
+  </atom:name>
+</atom:author>
 {% for feature in features %}
 <Placemark> 
   <name>{{ feature.properties.title }}</name> 
@@ -12,15 +16,26 @@
       <outerBoundaryIs>  
         <LinearRing>
           <coordinates>
-            {% for coords in feature.geometry.coordinates.0 %}
-            {{coords.0}},{{coords.1}},0
-            {% endfor %}
-          </coordinates>
+            {% for coords in feature.geometry.coordinates.0 %}{{coords.0}},{{coords.1}},0
+            {% endfor %}</coordinates>
         </LinearRing>
       </outerBoundaryIs>
     </Polygon>
   </MultiGeometry>
- 
+  <ExtendedData>
+    <Data name="title">
+      <value>{{feature.properties.title}}</value> 
+    </Data>
+    <Data name="scale">
+      <value>{{feature.properties.scale}}</value> 
+    </Data>
+    <Data name="format">
+      <value>{{feature.properties.format}}</value> 
+    </Data>
+    <Data name="orientation">
+      <value>{{feature.properties.orientation}}</value> 
+    </Data>
+  </ExtendedData>
   <Style> 
     <LabelStyle>
       <color>00000000</color>

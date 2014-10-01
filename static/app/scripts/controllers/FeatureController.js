@@ -11,9 +11,9 @@
     var feature = $scope.feature;
     // set the initial parameters
     $scope.formats = Object.keys(MeasuresProvider.measures).reverse();
-    feature.format = $scope.formats[0];
-    feature.orientation = 'landscape';
-    feature.title = 'Map';
+    feature.format = feature.format || $scope.formats[0];
+    feature.orientation = feature.orientation || 'landscape';
+    feature.title = feature.title || 'Map';
 
     $scope.$watch('feature.format', function(){
       feature.prev_scale = feature.scale = feature.getScale();
