@@ -86,4 +86,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static/app"),
 )
 
-STATIC_ROOT = 'static_root' if not DEBUG else 'static'
+STATIC_ROOT = 'static_root'
