@@ -28,7 +28,7 @@ class DeserializeKML(View):
         kml = KML(kml_file)
 
         name_checked = kml.check_name()
-        if 'error' in kml.check_name():
+        if 'error' in name_checked:
             return HttpResponse(name_checked['error'], status=400)
         
         return HttpResponse(json.dumps(kml.extract_features()))
