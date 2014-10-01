@@ -17,9 +17,11 @@
               var filename = element[0].files[0].name.split('.');
               if (filename[filename.length - 1] === 'kml'){
                 modelSetter(scope, element[0].files[0]);
+                scope.upload_enabled = true;
               }
               else{
                 alert('Invalid file extension, only "kml" is allowed');
+                scope.upload_enabled = false;
               }
           });
         });

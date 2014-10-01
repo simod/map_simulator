@@ -34,6 +34,7 @@
         })
         .success(function(data){
           $rootScope.$broadcast('kml_loaded', data.features);
+          $('#upload_kml').modal('hide');
         })
         .error(function(data){
           alert(data);

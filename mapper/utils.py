@@ -9,8 +9,8 @@ class KML(object):
         
 
     def check_name(self):
-        name = self.kml.getElementsByTagName('atom:name')[0].firstChild
-        if not name or not 'jrc-map-simulator' in name.wholeText:
+        name = self.kml.getElementsByTagName('atom:name')
+        if not name or not 'jrc-map-simulator' in name[0].firstChild.wholeText:
             return {
                 'error': 'The file was not generated from the JRC map simulator'
             }

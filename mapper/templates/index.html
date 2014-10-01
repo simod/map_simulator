@@ -23,9 +23,9 @@
         </leaflet>
     </div>
     <div class="pull-left" id="sidebar">
-        <button type="submit" class="kml-export btn btn-primary btn-sm" ng-disabled="rectangles.length==0" ng-click="exportKml()">Export KML</button>
-        <button type="submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#upload_kml">Restore from KML</button>
-        <button type="submit" class="zoom-all btn btn-primary btn-sm" ng-disabled="rectangles.length==0" ng-click="zoomAll()">Zoom All</button>
+        <button type="submit" class="kml-export btn btn-primary btn-xs" ng-disabled="rectangles.length==0" ng-click="exportKml()">Export KML</button>
+        <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#upload_kml">Import KML</button>
+        <button type="submit" class="zoom-all btn btn-primary btn-xs" ng-disabled="rectangles.length==0" ng-click="zoomAll()">Zoom All</button>
         <h3>Areas of interest</h3>
         <div class="features">
             {% verbatim %}
@@ -48,9 +48,20 @@
             {% endverbatim %}
         </div>
     </div>
-    <div class="modal fade" id="upload_kml" ng-controller="UploadController">
-        <input type="file" class="btn btn-sm" file-model="kmlFile"\>
-        <button class="btn btn-sm" id="submit_kml" ng-click="sendKml()">Upload KML</button>
+    <div class="modal fade" id="upload_kml" ng-controller="UploadController" ng-init="upload_enabled=false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Restore a map state from an existing KML</h4>
+                </div>
+                <div class="modal-body">
+                    <p>You can only load a KML generated with this application, to restore the previously drawn maps.</p>
+                    <input type="file" class="btn btn-sm" file-model="kmlFile"\>
+                    <button class="btn btn-sm" id="submit_kml" ng-click="sendKml()" ng-disabled="upload_enabled==false">Upload KML</button>
+                </div>
+            </div>
+        </div>
     </div>
     {% csrf_token %}
     <!-- build:js scripts/vendor.js -->
