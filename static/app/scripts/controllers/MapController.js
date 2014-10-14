@@ -103,6 +103,14 @@
         }
       });
 
+      // Redraw the inner box on edit stop to preserve internal map in case the edit 
+      // is not saved
+      map.on('draw:editstop', function(e){
+        for(var i in $scope.rectangles){
+          $scope.rectangles[i].updateInnerBox();
+        }
+      });
+
       // reset the rectangle styles is the map is clicked (deselect)
       // don't do it if the clicked feature is already selected
       map.deselectAllFeatures = function(current_feature){
