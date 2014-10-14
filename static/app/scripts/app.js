@@ -15,5 +15,17 @@
     'upload_controller',
     'upload_directive'
   ]);
+
+
+  // Register a filter to round the scale for image preview
+  module.filter('roundscale', function(){
+    return function(scale){
+      if(scale > 3000000){
+        return 'high_res';
+      }else{
+        return 'low_res';
+      }
+    }
+  });
 })();
 

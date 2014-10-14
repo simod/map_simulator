@@ -14,6 +14,9 @@
     feature.format = feature.format || $scope.formats[0];
     feature.orientation = feature.orientation || 'landscape';
     feature.title = feature.title || 'Map';
+    feature.reference;
+    feature.delineation;
+    feature.grading;
 
     $scope.$watch('feature.format', function(){
       feature.prev_scale = feature.scale = feature.getScale();

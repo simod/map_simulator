@@ -27,7 +27,7 @@
       <value>{{feature.properties.title}}</value> 
     </Data>
     <Data name="scale">
-      <value>{{feature.properties.scale}}</value> 
+      <value>1 : {{feature.properties.scale}}</value> 
     </Data>
     <Data name="format">
       <value>{{feature.properties.format}}</value> 
@@ -35,6 +35,12 @@
     <Data name="orientation">
       <value>{{feature.properties.orientation}}</value> 
     </Data>
+    {% if feature.properties.reference %}
+    <Data name="reference"><value>true</value></Data>{% endif %}
+    {% if feature.properties.delineation %}
+    <Data name="delineation"><value>true</value></Data>{% endif %}
+    {% if feature.properties.grading %}
+    <Data name="grading"><value>true</value></Data>{% endif %}
   </ExtendedData>
   <Style> 
     <LabelStyle>
@@ -53,7 +59,11 @@
         <strong>Title</strong>: {{feature.properties.title}}</br>
         <strong>Scale</strong>: {{feature.properties.scale}}</br>
         <strong>Format</strong>: {{feature.properties.format}}</br>
-        <strong>Orientation</strong>: {{feature.properties.orientation}}</br>
+        <strong>Orientation</strong>: {{feature.properties.orientation | title}}</br>
+        <strong>Map Types</strong>:</br>
+        {% if feature.properties.reference %}Reference</br>{% endif %}
+        {% if feature.properties.delineation %}Delineation</br>{% endif %}
+        {% if feature.properties.grading %}Grading</br>{% endif %}
       ]]></text>
     </BalloonStyle>
   </Style>

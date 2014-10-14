@@ -16,6 +16,9 @@
           feature.properties['format'] = layers[i].format;
           feature.properties['orientation'] = layers[i].orientation;
           feature.properties['scale'] = layers[i].scale;
+          feature.properties['reference'] = layers[i].reference;
+          feature.properties['grading'] = layers[i].grading;
+          feature.properties['delineation'] = layers[i].delineation;
           json.features.push(feature);
         }
         return json;

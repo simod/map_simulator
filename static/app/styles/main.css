@@ -88,3 +88,12 @@ article input {
 #upload_kml{
   z-index: 99999999999;
 }
+
+.preview_image{
+  width: 150px;
+  height: 150px;
+}
+
+.preview_image_high_res{
+  background-image: url('../images/preview.png');
+}

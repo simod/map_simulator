@@ -41,10 +41,14 @@
                 </select></br>
                 <label>Scale</label>
                  1: <input type="text"  ng-model="feature.scale" ng-keyup="$event.keyCode == 13 ? feature.recalculate_bounds() : null" class="feature-scale"></input></br>
+                <label>Map type:</label></br>
+                <input ng-model="feature.reference" type="checkbox">Reference</input></br>
+                <input ng-model="feature.delineation" type="checkbox">Delineation</input></br>
+                <input ng-model="feature.grading" type="checkbox">Grading</input></br>
                 <strong>N: </strong><span ng-bind="feature._latlngs[1].lat | number:4"></span>
                 <strong>W: </strong><span ng-bind="feature._latlngs[1].lng | number:4"></span></br>
                 <button ng-click="feature.zoomToFeature()" class="btn btn-xs btn-primary">Zoom</button>
-                <button class="btn btn-xs btn-primary preview" data-toggle="popover" data-content="<img src='/static/images/preview.png' />" data-title="<strong>Example of resolution</strong>" data-container="body">Preview</button>
+                <button class="btn btn-xs btn-primary preview" data-toggle="popover" data-content="<div class='preview_image preview_image_{{feature.scale | roundscale}}'></div>" data-title="<strong>Example of resolution</strong>" data-container="body">Preview</button>
             </article>
             {% endverbatim %}
         </div>
