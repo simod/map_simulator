@@ -71,16 +71,17 @@
     {% csrf_token %}
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="{% static "bower_components/jquery/jquery.js" %}"></script>
-    <script src="{% static "bower_components/angular/angular.js" %}"></script>
-    <script src="{% static "bower_components/bootstrap/dist/js/bootstrap.js" %}"></script>
-    <script src="{% static "bower_components/bootstrap/js/tooltip.js" %}"></script>
-    <script src="{% static "bower_components/bootstrap/js/popover.js" %}"></script>
-    <script src="{% static "bower_components/leaflet-dist/leaflet.js" %}"></script>
-    <script src="{% static "bower_components/leaflet.draw/dist/leaflet.draw.js" %}"></script>
-    <script src="{% static "bower_components/leaflet.fullscreen/Control.FullScreen.js" %}"></script>
-    <script src="{% static "bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js" %}"></script>
-    
+    <script type="text/javascript" src="{% static "bower_components/jquery/jquery.js" %}"></script>
+    <script type="text/javascript" src="{% static "bower_components/angular/angular.js" %}"></script>
+    <script type="text/javascript" src="{% static "bower_components/bootstrap/dist/js/bootstrap.js" %}"></script>
+    <script type="text/javascript" src="{% static "bower_components/bootstrap/js/tooltip.js" %}"></script>
+    <script type="text/javascript" src="{% static "bower_components/bootstrap/js/popover.js" %}"></script>
+    <script type="text/javascript" src="{% static "bower_components/leaflet-dist/leaflet.js" %}"></script>
+    <script type="text/javascript" src="{% static "bower_components/leaflet.draw/dist/leaflet.draw.js" %}"></script>
+    <script type="text/javascript" src="{% static "bower_components/leaflet.fullscreen/Control.FullScreen.js" %}"></script>
+    <script type="text/javascript" src="{% static "bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js" %}"></script>
+    <script type="text/javascript" src="{% static "bower_components/leaflet-plugins/layer/tile/Google.js" %}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
