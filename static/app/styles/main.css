@@ -78,7 +78,8 @@ article input {
 .fullscreen{
   position: absolute;
   right: 20px;
-  top: 20px;
+  top: 150px;
+  height: 700px;
   z-index: 9999999999;
   background: white;
   padding: 10px;
