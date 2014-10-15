@@ -10,7 +10,8 @@
 <Placemark> 
   <name>{{ feature.properties.title }}</name> 
 
-  <description>{{ feature.properties.scale }}</description>
+  <description>1: {{ feature.properties.scale }}
+  {% if feature.properties.reference %}reference {% endif %}{% if feature.properties.delineation %}delineation {% endif %}{% if feature.properties.grading %}grading{% endif %}</description>
   <MultiGeometry>
     <Polygon>   
       <outerBoundaryIs>  
