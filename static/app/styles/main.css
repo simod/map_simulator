@@ -97,3 +97,8 @@ article input {
 .preview_image_high_res{
   background-image: url('../images/preview.png');
 }
+
+.popover{
+  z-index: 99999999999;
+}
+}
