@@ -27,7 +27,7 @@
       <value>{{feature.properties.title}}</value> 
     </Data>
     <Data name="scale">
-      <value>1 : {{feature.properties.scale}}</value> 
+      <value>{{feature.properties.scale}}</value> 
     </Data>
     <Data name="format">
       <value>{{feature.properties.format}}</value> 
@@ -57,7 +57,7 @@
     <BalloonStyle>
       <text><![CDATA[
         <strong>Title</strong>: {{feature.properties.title}}</br>
-        <strong>Scale</strong>: {{feature.properties.scale}}</br>
+        <strong>Scale</strong>: 1 : {{feature.properties.scale}}</br>
         <strong>Format</strong>: {{feature.properties.format}}</br>
         <strong>Orientation</strong>: {{feature.properties.orientation | title}}</br>
         <strong>Map Types</strong>:</br>
