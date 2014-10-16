@@ -11,7 +11,7 @@
   <name>{{ feature.properties.title }}</name> 
 
   <description>1: {{ feature.properties.scale }}
-  {% if feature.properties.reference %}reference {% endif %}{% if feature.properties.delineation %}delineation {% endif %}{% if feature.properties.grading %}grading{% endif %}</description>
+  {% if feature.properties.reference %}Reference {% endif %}{% if feature.properties.delineation %}Delineation {% endif %}{% if feature.properties.grading %}Grading{% endif %}</description>
   <MultiGeometry>
     <Polygon>   
       <outerBoundaryIs>  

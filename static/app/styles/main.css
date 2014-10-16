@@ -79,11 +79,15 @@ article input {
   position: absolute;
   right: 20px;
   top: 200px;
-  height: 700px;
+  height: 600px;
   z-index: 9999999999;
   background: white;
   padding: 10px;
   border: 1px solid black;
+}
+
+.fullscreen .features{
+  height: 500px;
 }
 
 #upload_kml{
@@ -101,5 +105,4 @@ article input {
 
 .popover{
   z-index: 99999999999;
-}
 }
