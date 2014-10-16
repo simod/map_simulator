@@ -65,32 +65,32 @@
           //     }
           //   }
           // },
-          A2: {
-            portrait: {
-              width: width * 2,
-              height: height * 2,
-              inner_box_ratios: {
-                width: 0.94,
-                height: 0.72
-              },
-              inner_box_offsets: {
-                top: 146,
-                left: 18.1
-              }
-            },
-            landscape: {
-              width: height * 2,
-              height: width * 2,
-              inner_box_ratios: {
-                width: 0.81,
-                height: 0.94
-              },
-              inner_box_offsets: {
-                top: 18.1,
-                left: 18.1
-              }
-            }
-          },
+          // A2: {
+          //   portrait: {
+          //     width: width * 2,
+          //     height: height * 2,
+          //     inner_box_ratios: {
+          //       width: 0.94,
+          //       height: 0.72
+          //     },
+          //     inner_box_offsets: {
+          //       top: 146,
+          //       left: 18.1
+          //     }
+          //   },
+          //   landscape: {
+          //     width: height * 2,
+          //     height: width * 2,
+          //     inner_box_ratios: {
+          //       width: 0.81,
+          //       height: 0.94
+          //     },
+          //     inner_box_offsets: {
+          //       top: 18.1,
+          //       left: 18.1
+          //     }
+          //   }
+          // },
           A1: {
             portrait: {
               width: height * 2,

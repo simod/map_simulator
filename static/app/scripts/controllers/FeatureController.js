@@ -40,7 +40,7 @@
       if (!this._popup._isOpen){
         this.openPopup();
       };
-      var top_scroll = $scope.rectangles.indexOf(this) * 150;
+      var top_scroll = $scope.rectangles.indexOf(this) * 235;
       $('.features').animate({
         scrollTop: top_scroll
       });
