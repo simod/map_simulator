@@ -106,3 +106,8 @@ article input {
 .popover{
   z-index: 99999999999;
 }
+
+#decimal_degree{
+  margin-left: 20px;
+  margin-bottom: 10px
+}

@@ -27,5 +27,15 @@
       }
     }
   });
+
+  module.filter('degreeFormat', function(){
+    return function(d){
+      if($('#decimal_degree').prop('checked')){
+        return d;
+      }else{
+        return [0|d, '° ', 0|(d<0?d=-d:d)%1*60, "' ", 0|d*60%1*60, '"'].join('');
+      }
+    }
+  });
 })();
 
