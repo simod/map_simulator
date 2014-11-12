@@ -28,6 +28,7 @@
     }
   });
 
+  // Register a filter for deimal degree to deg minute and second conversion
   module.filter('degreeFormat', function(){
     return function(d){
       if($('#decimal_degree').prop('checked')){
