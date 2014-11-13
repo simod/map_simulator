@@ -17,8 +17,7 @@
       <outerBoundaryIs>  
         <LinearRing>
           <coordinates>
-            {% for coords in feature.geometry.coordinates.0 %}{{coords.0}},{{coords.1}},0
-            {% endfor %}</coordinates>
+{% for coords in feature.geometry.coordinates.0 %}{{coords.0}},{{coords.1}},0 {% endfor %}</coordinates>
         </LinearRing>
       </outerBoundaryIs>
     </Polygon>

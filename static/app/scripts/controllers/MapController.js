@@ -180,7 +180,6 @@
             rectangle.reference = Boolean(feature.properties.reference);
             rectangle.delineation = Boolean(feature.properties.delineation);
             rectangle.grading = Boolean(feature.properties.grading);
-            console.log(rectangle);
           }
         });
       });

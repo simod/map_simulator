@@ -32,8 +32,8 @@ class KML(object):
                 'properties': {},
                 'type': 'Feature'
             }
-            coords = place.getElementsByTagName('coordinates')[0].firstChild.wholeText
-            coords = coords.replace(' ', '').split('\n')[1:-1]
+            coords = place.getElementsByTagName('coordinates')[0].firstChild.wholeText.replace('\n', '').replace('\t','')
+            coords = coords.split(' ')[1:-1]
             for coord in coords:
                 latlng = coord[:-2].split(',')
                 feature['geometry']['coordinates'][0].append([float(latlng[0]),float(latlng[1])])
