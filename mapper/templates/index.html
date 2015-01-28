@@ -27,15 +27,8 @@
         <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#upload_kml">Import KML</button></br>
         <button type="submit" class="zoom-all btn btn-primary btn-xs utils" ng-disabled="rectangles.length==0" ng-click="zoomAll()">Zoom All</button>
         <button class="btn btn-primary btn-xs preview utils">Examples</button>
-        <button class="btn btn-primary btn-xs utils help" data-toggle="modal" data-target="#help">Help</button>
-        <div id="help" class="modal fade">
-            <div class="modal-body">
-                <img src="static/images/mapsimulator-help.png"></img>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
+        <a href="static/images/mapsimulator-help.png" target="_blank"><button class="btn btn-primary btn-xs utils help">Help</button></a>
+
         <h3>Areas of interest</h3>
         <input type="checkbox" id="decimal_degree" checked>Decimal degrees</input>
         <div class="features">
