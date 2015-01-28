@@ -67,7 +67,7 @@
 
     map.then(function(map){
       //add fullscreen control
-      if (window.navigator.userAgent.indexOf("MSIE") == -1 || !window.ActiveXObject){
+      if (!window.hasOwnProperty('ActiveXObject')){
         new L.control.fullscreen().addTo(map);
       }
 
