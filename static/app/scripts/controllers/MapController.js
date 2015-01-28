@@ -67,7 +67,9 @@
 
     map.then(function(map){
       //add fullscreen control
-      new L.control.fullscreen().addTo(map);
+      if (!window.navigator.userAgent.indexOf("MSIE") > -1){
+        new L.control.fullscreen().addTo(map);
+      }
 
       // Hook the enter/exit fullscreen behaviors
       map.on('enterFullscreen', function () {
