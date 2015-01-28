@@ -3,7 +3,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html ng-app="mapper"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta charset="utf-8">
@@ -120,6 +120,7 @@
           title: "<strong>Map scales examples</strong>",
           container: 'body'
         });
+    angular.bootstrap(document,['mapper']);
     </script>
 </body>
 </html>
