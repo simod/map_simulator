@@ -26,6 +26,7 @@
         <button type="submit" class="kml-export btn btn-primary btn-xs" ng-disabled="rectangles.length==0" ng-click="exportKml()">Export KML</button>
         <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#upload_kml">Import KML</button></br>
         <button type="submit" class="zoom-all btn btn-primary btn-xs" ng-disabled="rectangles.length==0" ng-click="zoomAll()">Zoom All</button>
+        <button class="btn btn-primary btn-xs preview">Examples</button>
         <h3>Areas of interest</h3>
         <input type="checkbox" id="decimal_degree" checked>Decimal degrees</input>
         <div class="features">
@@ -51,7 +52,6 @@
                 <strong>S: </strong><span ng-bind="feature.innerBox._latlngs[3].lat | number:4 | degreeFormat"></span>
                 <strong>E: </strong><span ng-bind="feature.innerBox._latlngs[3].lng | number:4 | degreeFormat"></span></br>
                 <button ng-click="feature.zoomToFeature()" class="btn btn-xs btn-primary">Zoom</button>
-                <button class="btn btn-xs btn-primary preview" data-toggle="popover" data-content="<div class='preview_image preview_image_{{feature.scale | roundscale}}'></div>" data-title="<strong>Example of resolution</strong>" data-container="body">Preview</button>
             </article>
             {% endverbatim %}
         </div>
@@ -71,6 +71,7 @@
             </div>
         </div>
     </div>
+    {% include "examples.html" %}
     {% csrf_token %}
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -112,8 +113,11 @@
       $('html').popover({
           selector: '.preview',
           html: true,
-          trigger: 'hover',
-          placement: 'left'
+          trigger: 'click',
+          placement: 'bottom',
+          content: function(){return $('#examples_table').html()},
+          title: "<strong>Map scales examples</strong>",
+          container: 'body'
         });
     </script>
 </body>

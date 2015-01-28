@@ -43,13 +43,15 @@ h3{
   font-weight: bold; 
 }
 
+.zoom-all, .preview{
+  margin-top: 5px;
+}
 .kml-export{
   margin-left: 15px;
 }
 
 .zoom-all{
-  margin-left: 65px;
-  margin-top: 5px;
+  margin-left: 30px;
 }
 
 article h4{
@@ -94,20 +96,17 @@ article input {
   z-index: 99999999999;
 }
 
-.preview_image{
-  width: 150px;
-  height: 150px;
-}
-
-.preview_image_high_res{
-  background-image: url('../images/preview.png');
-}
-
 .popover{
   z-index: 99999999999;
+  max-width: 600px;
 }
 
 #decimal_degree{
   margin-left: 20px;
   margin-bottom: 10px
+}
+
+#examples_table_body  td{
+  border: 1px solid gray;
+  padding: 3px;
 }

@@ -14,7 +14,7 @@
         
         element.bind('change', function(){
           scope.$apply(function(){
-              var filename = element[0].files[0].name.split('.');
+              var filename = $(element[0]).val().split('.');
               if (filename[filename.length - 1] === 'kml'){
                 modelSetter(scope, element[0].files[0]);
                 scope.upload_enabled = true;
