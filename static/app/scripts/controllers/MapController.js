@@ -22,7 +22,7 @@
 
     angular.extend($scope, {
       center: {
-        lat: 20,
+        lat: 50,
         lng: 3.9,
         zoom: 3
       },
