@@ -23,9 +23,9 @@
         </leaflet>
     </div>
     <div class="pull-left" id="sidebar">
-        <button type="submit" class="kml-export btn btn-primary btn-xs" ng-disabled="rectangles.length==0" ng-click="exportKml()">Export KML</button>
-        <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#upload_kml">Import KML</button></br>
-        <button type="submit" class="zoom-all btn btn-primary btn-xs utils" ng-disabled="rectangles.length==0" ng-click="zoomAll()">Zoom All</button>
+        <button type="button" class="kml-export btn btn-primary btn-xs" ng-disabled="rectangles.length==0" ng-click="exportKml()">Export KML</button>
+        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#upload_kml">Import KML</button></br>
+        <button type="button" class="zoom-all btn btn-primary btn-xs utils" ng-disabled="rectangles.length==0" ng-click="zoomAll()">Zoom All</button>
         <button class="btn btn-primary btn-xs preview utils">Examples</button>
         <a href="static/images/mapsimulator-help.png" target="_blank"><button class="btn btn-primary btn-xs utils help">Help</button></a>
 
@@ -53,7 +53,7 @@
                 <strong>W: </strong><span ng-bind="feature.innerBox._latlngs[1].lng | number:4 | degreeFormat"></span></br>
                 <strong>S: </strong><span ng-bind="feature.innerBox._latlngs[3].lat | number:4 | degreeFormat"></span>
                 <strong>E: </strong><span ng-bind="feature.innerBox._latlngs[3].lng | number:4 | degreeFormat"></span></br>
-                <button ng-click="feature.zoomToFeature()" class="btn btn-xs btn-primary">Zoom</button>
+                <button type="button" ng-click="feature.zoomToFeature()" class="btn btn-xs btn-primary">Zoom</button>
             </article>
             {% endverbatim %}
         </div>
@@ -121,6 +121,13 @@
           container: 'body'
         });
     angular.bootstrap(document,['mapper']);
+
+    //avoid the enter keypress default behavior
+    $(document).keydown(function(event){
+        if(event.which == 13){
+            console.log('prevented');
+        }
+    });
     </script>
 </body>
 </html>
