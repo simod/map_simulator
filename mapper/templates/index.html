@@ -125,7 +125,7 @@
     //avoid the enter keypress default behavior
     $(document).keydown(function(event){
         if(event.which == 13){
-            console.log('prevented');
+            event.preventDefault();
         }
     });
     </script>
