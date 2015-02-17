@@ -28,10 +28,10 @@
             },
             onEachFeature: function(feature, layer){
               var popupContent = '';
-              for (var prop in feature.properties){
-                popupContent += prop + ': ' + feature.properties[prop] + '</br>'
-              }
-              layer.bindPopup(popupContent);
+              // for (var prop in feature.properties){
+              //   popupContent += prop + ': ' + feature.properties[prop] + '</br>'
+              // }
+              layer.bindPopup(feature.properties['description']);
             }
           });
         
