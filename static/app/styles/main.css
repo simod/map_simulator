@@ -92,7 +92,7 @@ article input {
   height: 500px;
 }
 
-#upload_kml{
+#upload_kml, #upload_generic_kml{
   z-index: 99999999999;
 }
 
