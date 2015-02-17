@@ -23,11 +23,14 @@
         </leaflet>
     </div>
     <div class="pull-left" id="sidebar">
-        <button type="button" class="kml-export btn btn-primary btn-xs" ng-disabled="rectangles.length==0" ng-click="exportKml()">Export KML</button>
-        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#upload_kml">Import KML</button></br>
+        <button type="button" class="kml-export btn btn-primary btn-xs" ng-disabled="rectangles.length==0" ng-click="exportKml()">Export Maps</button>
+        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#upload_kml">Import Maps</button></br>
+        <button type="button" class="zoom-all btn btn-primary btn-xs utils" data-toggle="modal" data-target="#upload_generic_kml">Add KML</button>
+        <a href="static/images/mapcoverageplanner-help.png" target="_blank"><button class="btn btn-primary btn-xs utils help">Help</button></a></br>
         <button type="button" class="zoom-all btn btn-primary btn-xs utils" ng-disabled="rectangles.length==0" ng-click="zoomAll()">Zoom All</button>
         <button class="btn btn-primary btn-xs preview utils">Examples</button>
-        <a href="static/images/mapcoverageplanner-help.png" target="_blank"><button class="btn btn-primary btn-xs utils help">Help</button></a>
+        
+        
 
         <h3>Areas of interest</h3>
         <input type="checkbox" id="decimal_degree" checked>Decimal degrees</input>
@@ -73,6 +76,21 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="upload_generic_kml" ng-controller="UploadGenericController" ng-init="upload_enabled=false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Add a KML to map</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Loading KML heavier than 1 MB may slow down the application.</p>
+                    <input type="file" class="btn btn-sm" file-model="kmlFile"\>
+                    <button class="btn btn-sm" id="submit_kml" ng-click="loadKML()" ng-disabled="upload_enabled==false">Upload KML</button>
+                </div>
+            </div>
+        </div>
+    </div>
     {% include "examples.html" %}
     {% csrf_token %}
     <!-- build:js scripts/vendor.js -->
@@ -88,6 +106,8 @@
     <script type="text/javascript" src="{% static "bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js" %}"></script>
     <script type="text/javascript" src="{% static "bower_components/leaflet-plugins/layer/tile/Google.js" %}"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+
     <!-- endbower -->
     <!-- endbuild -->
 

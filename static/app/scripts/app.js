@@ -6,6 +6,7 @@
   goog.require('map_controller');
   goog.require('feature_controller');
   goog.require('upload_controller');
+  goog.require('upload_generic_controller');
   goog.require('upload_directive');
   
 
@@ -13,7 +14,8 @@
     'map_controller',
     'feature_controller',
     'upload_controller',
-    'upload_directive'
+    'upload_directive',
+    'upload_generic_controller'
   ]);
 
 
