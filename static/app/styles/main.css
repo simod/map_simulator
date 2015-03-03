@@ -81,7 +81,7 @@ article input {
   position: absolute;
   right: 20px;
   top: 200px;
-  height: 630px;
+  height: 680px;
   z-index: 9999999999;
   background: white;
   padding: 10px;
@@ -89,7 +89,7 @@ article input {
 }
 
 .fullscreen .features{
-  height: 500px;
+  height: 520px;
 }
 
 #upload_kml, #upload_generic_kml{
