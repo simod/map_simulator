@@ -28,14 +28,9 @@
       },
       layers: {
         baselayers: {
-          mapquest: {
-            name: 'MapQuest',
-            url: 'http://otile4.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
-            type: 'xyz'
-          },
           osm: {
             name: 'OpenStreetMap',
-            url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            url: 'http://europa.eu/webtools/maps/tiles/osm-ec/{z}/{x}/{y}.png',
             type: 'xyz'
           },
           googleTerrain: {
