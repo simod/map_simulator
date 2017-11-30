@@ -16,9 +16,13 @@
   ]);
 
   module.controller('MapController', function(
-    $scope, leafletData, LeafletDrawOverrides, 
+    $scope, leafletData, LeafletDrawOverrides,
     LeafletRectangleExtensions, KmlService, InnerMapProvider
     ){
+
+    var today = new Date();
+    var week = new Date();
+    week.setDate(week.getDate() - 7);
 
     angular.extend($scope, {
       center: {
@@ -47,6 +51,56 @@
             name: 'Google Streets',
             layerType: 'ROADMAP',
             type: 'google'
+          }
+        },
+        overlays: {
+          effisModis: {
+            name: 'EFFIS active fires 7 days Modis',
+            type: 'wms',
+            url: 'http://ies-ows.jrc.ec.europa.eu/effis',
+            layerParams: {
+              layers: 'modis.hs',
+              format: 'image/png',
+              transparent: true,
+              singletile: false,
+              time: week.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0]
+            }
+          },
+          effisViirs: {
+            name: 'EFFIS active fires 7 days Viirs',
+            type: 'wms',
+            url: 'http://ies-ows.jrc.ec.europa.eu/effis',
+            layerParams: {
+              layers: 'viirs.hs',
+              format: 'image/png',
+              transparent: true,
+              singletile: false,
+              time: week.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0]
+            }
+          },
+          effisBaModis: {
+            name: 'EFFIS burnt areas Modis',
+            type: 'wms',
+            url: 'http://ies-ows.jrc.ec.europa.eu/effis',
+            layerParams: {
+              layers: 'modis.ba',
+              format: 'image/png',
+              transparent: true,
+              singletile: false,
+              time: today.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0]
+            }
+          },
+          effisBaViirs: {
+            name: 'EFFIS burnt areas Viirs',
+            type: 'wms',
+            url: 'http://ies-ows.jrc.ec.europa.eu/effis',
+            layerParams: {
+              layers: 'viirs.ba',
+              format: 'image/png',
+              transparent: true,
+              singletile: false,
+              time: today.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0]
+            }
           }
         }
       }
@@ -79,7 +133,7 @@
 
       var rectangles = new L.FeatureGroup().addTo(map);
 
-      // Initialize an empty array of rectangles, 
+      // Initialize an empty array of rectangles,
       // it has to be an array for 0rdering issues
       $scope.rectangles = [];
 
@@ -108,7 +162,7 @@
         e.layer.selectFeature();
       });
 
-      
+
       map.on('draw:deleted', function(e){
         $('.leaflet-draw-toolbar').find('a').removeClass('leaflet-disabled');
         // Splice the deleted feature from the angular scope and remove the inner box
@@ -120,7 +174,7 @@
         }
       });
 
-      // Redraw the inner box on edit stop to preserve internal map in case the edit 
+      // Redraw the inner box on edit stop to preserve internal map in case the edit
       // is not saved
       map.on('draw:editstop', function(e){
         for(var i in $scope.rectangles){
@@ -167,7 +221,7 @@
               feature.properties.orientation
             )
             rectangle.setStyle({color: '#f06eaa'});
-            
+
             $scope.rectangles.push(rectangle);
             rectangle.addTo(rectangles);
             rectangle.title = feature.properties.title;
