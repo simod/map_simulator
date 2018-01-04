@@ -63,7 +63,8 @@
               format: 'image/png',
               transparent: true,
               singletile: false,
-              time: week.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0]
+              time: week.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0],
+              attribution: '<a href="http://effis.jrc.ec.europa.eu/">EFFIS layers from the JRC EFFIS team</a>'
             }
           },
           effisViirs: {
@@ -75,7 +76,8 @@
               format: 'image/png',
               transparent: true,
               singletile: false,
-              time: week.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0]
+              time: week.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0],
+              attribution: '<a href="http://effis.jrc.ec.europa.eu/">EFFIS layers from the JRC EFFIS team</a>'
             }
           },
           effisBaModis: {
@@ -87,7 +89,8 @@
               format: 'image/png',
               transparent: true,
               singletile: false,
-              time: today.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0]
+              time: today.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0],
+              attribution: '<a href="http://effis.jrc.ec.europa.eu/">EFFIS layers from the JRC EFFIS team</a>'
             }
           },
           effisBaViirs: {
@@ -99,12 +102,54 @@
               format: 'image/png',
               transparent: true,
               singletile: false,
-              time: today.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0]
+              time: today.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0],
+              attribution: '<a href="http://effis.jrc.ec.europa.eu/">EFFIS layers from the JRC EFFIS team</a>'
             }
           }
         }
       }
     });
+
+    var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function(map){
+      var div = L.DomUtil.create('div', 'info legend');
+      div.innerHTML =
+      '<div class="legend-item"><strong>Active Fires MODIS</strong> <br/>' +
+      '<img src="http://ies-ows.jrc.ec.europa.eu/effis?format=image/png&request=getlegendgraphic&service=WMS&singletile=false&transparent=true&version=1.1.1&layer=modis.hs"/></div>' +
+      '<div class="legend-item"><strong>Active Fires VIIRS</strong> <br/>' +
+      '<img src="http://ies-ows.jrc.ec.europa.eu/effis?format=image/png&request=getlegendgraphic&service=WMS&singletile=false&transparent=true&version=1.1.1&layer=viirs.hs"/></div>' +
+      '<div class="legend-item"><strong>Burnt Areas MODIS</strong> <br/>' +
+      '<img src="http://ies-ows.jrc.ec.europa.eu/effis?format=image/png&request=getlegendgraphic&service=WMS&singletile=false&transparent=true&version=1.1.1&layer=modis.ba"/></div>' +
+      '<div class="legend-item"><strong>Burnt Areas VIIRS</strong> <br/>' +
+      '<img src="http://ies-ows.jrc.ec.europa.eu/effis?format=image/png&request=getlegendgraphic&service=WMS&singletile=false&transparent=true&version=1.1.1&layer=viirs.ba"/></div>';
+
+      return div;
+    };
+
+    var legendButton = L.control({position: 'topright'});
+    legendButton.onAdd = function(map){
+      var container = L.DomUtil.create('button', 'easy-button-button leaflet-bar leaflet-interactive');
+      var container_icon = L.DomUtil.create('img', '', container);
+      container_icon.src = '/static/images/list_icon.png';
+      container_icon.style.width = '25px';
+      container_icon.style.height = '25px';
+      container_icon.style.paddingRight = '3px';
+
+      container.style.backgroundColor = 'white';
+      container.style.width = '35px';
+      container.style.height = '35px';
+
+      L.DomEvent.on(container, 'mouseover', function(ev){
+        legend.addTo(map);
+        L.DomEvent.stopPropagation(ev);
+      });
+      L.DomEvent.on(container, 'mouseout', function(ev){
+        legend.removeFrom(map);
+        L.DomEvent.stopPropagation(ev);
+      });
+
+      return container;
+    }
 
     // Override Leaflet Draw
     LeafletDrawOverrides.overrideEditRectangle();
@@ -115,6 +160,9 @@
     var map = leafletData.getMap();
 
     map.then(function(map){
+
+      legendButton.addTo(map);
+
       //add fullscreen control
       if (!window.hasOwnProperty('ActiveXObject')){
         new L.control.fullscreen().addTo(map);
