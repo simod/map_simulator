@@ -64,7 +64,7 @@
               transparent: true,
               singletile: false,
               time: week.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0],
-              attribution: '<a href="http://effis.jrc.ec.europa.eu/">EFFIS layers from the JRC EFFIS team</a>'
+              attribution: '<a href="http://effis.jrc.ec.europa.eu/static/effis_current_situation/public/index.html" target="_blank">EFFIS layers from current situation viewer</a>'
             }
           },
           effisViirs: {
@@ -77,7 +77,7 @@
               transparent: true,
               singletile: false,
               time: week.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0],
-              attribution: '<a href="http://effis.jrc.ec.europa.eu/">EFFIS layers from the JRC EFFIS team</a>'
+              attribution: '<a href="http://effis.jrc.ec.europa.eu/static/effis_current_situation/public/index.html" target="_blank">EFFIS layers from current situation viewer</a>'
             }
           },
           effisBaModis: {
@@ -90,7 +90,7 @@
               transparent: true,
               singletile: false,
               time: today.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0],
-              attribution: '<a href="http://effis.jrc.ec.europa.eu/">EFFIS layers from the JRC EFFIS team</a>'
+              attribution: '<a href="http://effis.jrc.ec.europa.eu/static/effis_current_situation/public/index.html" target="_blank">EFFIS layers from current situation viewer</a>'
             }
           },
           effisBaViirs: {
@@ -103,7 +103,7 @@
               transparent: true,
               singletile: false,
               time: today.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0],
-              attribution: '<a href="http://effis.jrc.ec.europa.eu/">EFFIS layers from the JRC EFFIS team</a>'
+              attribution: '<a href="http://effis.jrc.ec.europa.eu/static/effis_current_situation/public/index.html" target="_blank">EFFIS layers from the current situation viewer</a>'
             }
           }
         }
@@ -162,6 +162,8 @@
     map.then(function(map){
 
       legendButton.addTo(map);
+
+      map.attributionControl.setPrefix('');
 
       //add fullscreen control
       if (!window.hasOwnProperty('ActiveXObject')){
