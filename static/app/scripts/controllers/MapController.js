@@ -35,7 +35,10 @@
           osm: {
             name: 'OpenStreetMap',
             url: 'http://europa.eu/webtools/maps/tiles/osm-ec/{z}/{x}/{y}.png',
-            type: 'xyz'
+            type: 'xyz',
+            layerParams: {
+              attribution: '<a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> Contributors | <a href="javascript:alert(\'The designations employed and the presentation of material on this map do not imply the expression of any opinion whatsoever on the part of the European Union concerning the legal status of any country, territory, city or area or of its authorities, or concerning the delimitation of its frontiers or boundaries. \n\nKosovo*: This designation is without prejudice to positions on status, and is in line with UNSCR 1244/1999 and the ICJ Opinion on the Kosovo declaration of independence. \n\nPalestine*: This designation shall not be construed as recognition of a State of Palestine and is without prejudice to the individual positions of the Member States on this issue.\');">Disclaimer</a>'
+            }
           },
           googleTerrain: {
             name: 'Google Terrain',
@@ -103,7 +106,7 @@
               transparent: true,
               singletile: false,
               time: today.toISOString().split('T')[0] + '/' + today.toISOString().split('T')[0],
-              attribution: '<a href="http://effis.jrc.ec.europa.eu/static/effis_current_situation/public/index.html" target="_blank">EFFIS layers from the current situation viewer</a>'
+              attribution: '<a href="http://effis.jrc.ec.europa.eu/static/effis_current_situation/public/index.html" target="_blank">EFFIS layers from current situation viewer</a>'
             }
           }
         }
